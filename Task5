@@ -1,0 +1,30 @@
+int trig=5;
+int echo=6;
+long d=0,t=0;
+void setup()
+{
+  pinMode(trig, OUTPUT);
+   pinMode(echo, INPUT);
+   pinMode(1, OUTPUT);
+   pinMode(2, OUTPUT);
+   pinMode(3, OUTPUT);
+   pinMode(4, OUTPUT);
+   Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trig,0);
+  delayMicroseconds(2);
+  digitalWrite(trig,1);
+  delayMicroseconds(10);
+  t=pulseIn(echo,1);
+  d=.0343*(t/2);
+  Serial.println(d);
+  delay(5);
+  if(d>=59){digitalWrite(2,1);}
+  if(d<=59){digitalWrite(2,0);}
+  if(d>=106.5){digitalWrite(3,1);}
+  if(d<=106.5){digitalWrite(3,0);}
+  if(d>=166){digitalWrite(4,1);}
+  if(d<=166){digitalWrite(4,0);}
+}
